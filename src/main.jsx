@@ -11,12 +11,23 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";
+import User from "./components/User/User.jsx";
+import Github, { githubInfoLoader } from "./components/Github/Github.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout></Layout>}>
       <Route path="" element={<Home></Home>}></Route>
       <Route path="about" element={<About></About>}></Route>
+      <Route path="user/" element={<User></User>}>
+        <Route path=":userid" element={<User></User>}></Route>
+      </Route>
+      <Route
+        path="github"
+        element={<Github></Github>}
+        loader={githubInfoLoader}
+      ></Route>
+      <Route path="*" element={<div>Not Found</div>}></Route>
     </Route>
   )
 );
